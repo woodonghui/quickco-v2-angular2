@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-3 col-sm-6 mb-3" *ngFor="let outlet of outlets">
+      <div class="card o-hidden h-100" routerLink="/admin/outlet/{{outlet.id}}">  
+          <!-- routerLink="/admin/outlet/{{outlet.id}}" -->
+        <div class="card-body">
+          <div class="mr-5">{{outlet.name}}</div>
+          <div class="small"><i class="fa fa-fw fa-phone"></i> {{outlet.contact}}</div>
+          <div class="small"><i class="fa fa-fw fa-map-marker"></i> {{outlet.address}}</div>
+          <!-- <div class="small">
+              <button mat-button (click)="openEditingOutletDialog(outlet)"><i class="fa fa-fw fa-edit"></i> Edit</button>
+          </div> -->
+          <div class="card-body-icon">
+            <i class="fa fa-fw fa-home"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-xl-3 col-sm-6 mb-3" (click)="openEditingOutletDialog()">
+      <div class="card text-white bg-primary o-hidden h-100">
+        <div class="card-body">
+          <div class="card-body-icon">
+            <i class="fa fa-fw fa-plus-circle"></i>
+          </div>
+          <div class="mr-5">Click here</div>
+          <div class="small">to add outlet</div>
+          <div class="small"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

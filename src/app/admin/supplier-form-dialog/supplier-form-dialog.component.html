@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Edit Supplier</h2>
+<div class="mat-form-container">
+  <mat-form-field>
+    <input matInput placeholder="Name" [(ngModel)]="supplier.name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Address" [(ngModel)]="supplier.address">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Contact" [(ngModel)]="supplier.contact">
+  </mat-form-field>
+  <mat-checkbox [(ngModel)]="supplier.gstregistered">GST/VAT Registered</mat-checkbox>
+  <mat-checkbox [(ngModel)]="supplier.hasterm">Has Term Period</mat-checkbox>
+
+  <button mat-raised-button color="primary" (click)="onSaveClick()">Save</button>
+</div>

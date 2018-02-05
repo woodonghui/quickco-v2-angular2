@@ -1,0 +1,121 @@
+<mat-vertical-stepper linear="true">
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Select the date and outlet</ng-template>
+      <mat-form-field>
+        <mat-select placeholder="Select outlet" formControlName="outlet" required #outlet>
+          <mat-option *ngFor="let outlet of outlets" [value]="outlet">
+            {{ outlet.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" required formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Fill out the numbers</ng-template>
+
+      <div class="container-form-field">
+        <mat-form-field>
+          <input matInput placeholder="Total Income" type="number" formControlName="totalincome" required>
+          <span matPrefix>$&nbsp;</span>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Income from delivery platform" type="number" formControlName="foodpandaincome" required>
+          <span matPrefix>$&nbsp;</span>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Cash" type="number" formControlName="bankincash" required>
+          <span matPrefix>$&nbsp;</span>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+
+  <mat-step>
+    <ng-template matStepLabel>Fill out the costs</ng-template>
+
+    <mat-form-field>
+      <mat-select placeholder="Select supplier" #supplier (selectionChange)="onSelectSupplier($event)">
+        <mat-option *ngFor="let supplier of suppliers" [value]="supplier.id">
+          {{ supplier.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Select product" #supplierproduct>
+        <mat-option *ngFor="let product of supplierProducts" [value]="product">
+          {{ product.name }} - {{product.unitprice}}/{{product.unit}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Quantity" type="number" required #quantity>
+    </mat-form-field>
+
+    <button mat-button (click)="addCostItem(supplierproduct.value, quantity.value)">
+      <i class="fa fa-fw fa-plus-circle"></i>
+    </button>
+
+    <mat-selection-list *ngIf="costItems">
+      <mat-list-option *ngFor="let item of costItems">
+        {{item.productname}} x {{item.quantity}}
+      </mat-list-option>
+    </mat-selection-list>
+    
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button matStepperNext>Next</button>
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Preview & Submit</ng-template>
+    <div>
+      <div>Outlet: {{firstFormGroup.value.outlet.name}}</div>
+      <div>Date: {{firstFormGroup.value.date | date}}</div>
+      <div>Total income: {{secondFormGroup.value.totalincome | currency}}</div>
+      <div>Income from delivery platform: {{secondFormGroup.value.foodpandaincome | currency}}</div>
+      <div>Cash: {{secondFormGroup.value.bankincash | currency}}</div>
+      <div *ngIf="costItems">
+        Cost:
+        <mat-list>
+          <mat-list-item *ngFor="let item of costItems">
+            {{item.productname}} x {{item.quantity}}
+          </mat-list-item>
+        </mat-list>    
+      </div>
+    </div>
+
+    <div>
+      <button mat-raised-button color="primary" (click)="save()">Save</button>
+    </div>
+
+  </mat-step>
+
+  <!-- <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    You are now done.
+  </mat-step> -->
+</mat-vertical-stepper>

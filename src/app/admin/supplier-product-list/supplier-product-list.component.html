@@ -1,0 +1,57 @@
+<!-- <div class="container-fluid" *ngIf="supplier">
+  <div class="mr-3">{{supplier.name}}</div>
+  <div class="">
+    <i class="fa fa-fw fa-map-marker"></i> {{supplier.address}}</div>
+  <div class="">
+    <i class="fa fa-fw fa-phone"></i> {{supplier.contact}}</div>
+</div> -->
+
+<div class="container-fluid">
+  <div class="container-actions">
+    <div class="left-actions">
+      <button mat-button color="primary" (click)="goBack()"><i class="fa fa-arrow-left"></i> Back</button>
+    </div>
+    <div class="right-actions">
+      <button mat-button (click)="openEditingProductDialog()">
+        <i class="fa fa-fw fa-plus"></i> Add Product</button>
+    </div>
+  </div>
+
+  <div class="container-table">
+    <div class="container-filter">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search product">
+      </mat-form-field>
+    </div>
+
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="unitprice">
+        <mat-header-cell *matHeaderCellDef> Price (w/o GST)</mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.unitprice | currency}} / {{element.unit}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="sku">
+        <mat-header-cell *matHeaderCellDef> SKU </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.sku}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-button (click)="openEditingProductDialog(element)"><i class="fa fa-fw fa-edit"></i></button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
+    </mat-paginator>
+  </div>
+</div>

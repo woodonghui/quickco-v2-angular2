@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-xl-3 col-sm-6 mb-3" *ngFor="let supplier of suppliers">
+        <div class="card o-hidden h-100" routerLink="/admin/supplier/{{supplier.id}}">
+          <div class="card-body">
+            <div class="mr-5">{{supplier.name}}</div>
+            <div class="small"><i class="fa fa-fw fa-map-marker"></i> {{supplier.address}}</div>
+            <div class="small"><i class="fa fa-fw fa-phone"></i> {{supplier.contact}}</div>
+            <div class="card-body-icon">
+              <i class="fa fa-fw fa-truck"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="col-xl-3 col-sm-6 mb-3" (click)="openEditingSupplierDialog()">
+        <div class="card text-white bg-primary o-hidden h-100">
+          <div class="card-body">
+            <div class="card-body-icon">
+              <i class="fa fa-fw fa-plus-circle"></i>
+            </div>
+            <div class="mr-5">Click here</div>
+            <div class="small">to add supplier</div>
+            <div class="small"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  
+  </div>

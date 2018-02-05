@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Edit Outlet</h2>
+<div class="mat-form-container">
+  <mat-form-field>
+    <input matInput placeholder="Outlet Name" [(ngModel)]="outlet.name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Outlet Address" [(ngModel)]="outlet.address">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Contact" [(ngModel)]="outlet.contact">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="onSaveClick()">Save</button>
+</div>

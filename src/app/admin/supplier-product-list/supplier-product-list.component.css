@@ -1,0 +1,22 @@
+.container-filter mat-form-field {
+    width: 100%;
+}
+
+.container-actions {
+    display: flex;
+    flex-direction: row;
+}
+
+.left-actions {
+    flex: 1;
+    text-align: left;
+}
+
+.right-actions {
+    flex: 1;
+    text-align: right;
+}
+
+.mat-snack-bar-container.error {
+    background-color: rgb(185, 38, 38);
+}

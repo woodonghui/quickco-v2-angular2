@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Edit Product in Supplier: {{supplier.name}}</h2>
+<div class="mat-form-container">
+  <mat-form-field>
+    <input matInput placeholder="Product Name" [(ngModel)]="product.name">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput type="number" placeholder="Unit Price" [(ngModel)]="product.unitprice">
+    <span matPrefix>$&nbsp;</span>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Unit" [(ngModel)]="product.unit">
+      <mat-option value="Kg">Kg</mat-option>
+      <mat-option value="CTN">CTN</mat-option>
+      <mat-option value="Piece">Piece</mat-option>
+      <mat-option value="Bag">Bag</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+      <input matInput placeholder="SKU" [(ngModel)]="product.sku">
+    </mat-form-field>
+  <button mat-raised-button color="primary" (click)="onSaveClick()">Save</button>
+</div>

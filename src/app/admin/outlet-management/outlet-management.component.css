@@ -1,0 +1,9 @@
+.card {
+    cursor: pointer;
+}
+.card.bg-primary {
+    background-color: #33C3F0!important;
+}
+.fa-home {
+    color: #eeeeee;
+}
